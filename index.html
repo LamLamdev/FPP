@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style> 
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+#x-link {
+  position: absolute;
+  bottom: 20px;   /* distance from bottom of viewport */
+  right: 30px;    /* distance from right of viewport */
+  pointer-events: auto;
+}
+
+#x-icon {
+  width: 40px;    /* adjust size as needed */
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#x-icon:hover {
+  transform: scale(1.1); /* slightly enlarge on hover */
+}
+
+/* put the canvas at z-index 0, full size */
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  outline: none;
+  z-index: 0;
+}
+
+/* overlay container sits above the canvas */
+#container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* logo in top-left */
+#logo {
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  width: 250px;
+  height: auto;
+}
+
+/* contract box centered bottom */
+#contract-box {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(27, 26, 26, 0.8);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #e2e2e2;
+  letter-spacing: 0.5px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#contract-box:hover {
+  transform: translateX(-50%) scale(1.2);
+  box-shadow: 0 0 12px rgba(255, 165, 0, 0.8);
+
+}
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <title>3D Planet Viewer</title>
+
+  <!-- import‐map shim (latest) -->
+  <script async src="https://unpkg.com/es-module-shims@2.6.1/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three":         "https://unpkg.com/three@0.178.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.178.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <img id="logo" src="text.png" alt="PLUTO">
+    <div id="contract-box">
+      BFgdzMkTPdKKJeTipv2njtDEwhKxkgFueJQfJGt1jups
+
+      
+    </div>
+    <script type="module" src="./main.js"></script>
+
+    <script>
+        const box = document.getElementById('contract-box');
+        box.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(box.textContent.trim());
+            // optional: give feedback
+            box.textContent = 'Copied!';
+            setTimeout(() => box.textContent = 'BFgdzMkTPdKKJeTipv2njtDEwhKxkgFueJQfJGt1jups', 1500);
+          } catch (e) {
+            console.error('Copy failed', e);
+          }
+        });
+      </script>
+      
+      <a id="x-link" href="https://x.com" target="_blank" rel="noopener">
+        <img id="x-icon" src="x.png" alt="X Logo">
+      </a>
+      
+
+  </div>
+</body>
+
+</html>
