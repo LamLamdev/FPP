@@ -65,7 +65,7 @@ controls.enableDamping = true;
 controls.enablePan = false;
 
 controls.autoRotate       = true;   // enable
-controls.autoRotateSpeed  = 1.8;    // degrees per second (try 0.1–1.0 for a slow spin)
+controls.autoRotateSpeed  = 1.2;    // degrees per second (try 0.1–1.0 for a slow spin)
 
 
 // limit zoom‐out (max distance from target)
